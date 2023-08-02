@@ -45,3 +45,70 @@ In this course, you will learn how to create web applications using Django, a po
 1. You can have as many apps as you want, but organize them so each app is self-contained.
 2. Create another `urls.py` file inside home app that is similar to the one we have in the smartnotes app. Use `include`.
 3. Now if you delete the whole app, it will not give you any errors because the app is not imported in the smartnotes urls file, but by its own urls.
+
+### Creating Users in Django
+
+Django has its own authentication system that allows us to create, delete and manage users. We can also use the Django admin interface to access and modify the data in the database.
+
+#### Using the admin interface
+
+- The admin endpoint is available at `/admin` and has its own authentication system.
+- To access the admin interface, we need to create a super user using the command `python manage.py createsuperuser`.
+- The admin interface allows us to create, edit and delete users, as well as other models that we register in the `admin.py` file of each app.
+- Django admin is highly configurable and customizable.
+
+#### Using migrations
+
+- Migrations are files that explain what types of changes need to be applied to the database, such as creating, modifying or deleting tables or columns.
+- To create migrations, we use the command `python manage.py makemigrations`.
+- To apply migrations, we use the command `python manage.py migrate`.
+- Migrations help us keep track of the changes in the database schema and make it easy to sync the database with the models.
+
+### Interaction with Database
+
+Django uses an ORM (Object Relational Mapping) system that allows us to work with the database using Python classes and objects.
+
+#### Creating models
+
+- A model is a Python class that represents a table in the database. The attributes of the class are the columns of the table.
+- To create a model, we need to create an app using the command `django-admin startapp <app_name>`.
+- Then, we need to add the app to the `INSTALLED_APPS` list in the `settings.py` file of the project.
+- Next, we need to define the model class in the `models.py` file of the app, inheriting from `django.db.models.Model`.
+- Finally, we need to create and apply migrations using the commands `python manage.py makemigrations` and `python manage.py migrate`.
+
+#### Working with models
+
+- To work with models through code, we can use the `python manage.py shell` command, which gives us an interactive interpreter that is connected to the current project.
+- From the shell, we can import the models and use methods such as `.objects.create()`, `.objects.filter()`, `.objects.get()`, `.save()`, `.delete()` and others to manipulate the data in the database.
+- We can also use query sets, which are collections of objects that can be filtered, ordered, sliced and aggregated.
+
+### Building Dynamic Webpages
+
+Django allows us to build dynamic webpages using views and templates.
+
+#### Creating views
+
+- A view is a Python function or class that handles a request and returns a response.
+- To create a view, we need to define it in the `views.py` file of the app, using either a function-based view or a class-based view.
+- A function-based view takes a request object as an argument and returns a response object, usually using the `render()` shortcut function.
+- A class-based view inherits from a generic view class, such as `ListView`, `DetailView`, `CreateView`, etc., and overrides some attributes and methods to customize its behavior.
+- To make a view accessible from a URL, we need to add it to the `urls.py` file of the app, using either the `path()` or `re_path()` function.
+- Then, we need to include the app's URLs in the project's `urls.py` file, using the `include()` function.
+
+#### Creating templates
+
+- A template is an HTML file that can contain variables, tags and filters that are rendered by Django into a final webpage.
+- To create a template, we need to create a folder named `templates` inside the app folder, and then create another folder with the same name as the app inside it.
+- Then, we need to create an HTML file inside that folder with any name we want.
+- In the template, we can use variables such as `{{ variable }}` to display values passed from the view, tags such as `{% tag %}` to perform logic or control flow, and filters such as `{{ variable|filter }}` to modify or format values.
+- We can also use template inheritance to reuse common parts of templates, such as headers or footers. To do that, we need to create a base template that contains `{% block %}` tags for sections that can be overridden by child templates. Then, we need to use `{% extends %}` tag in child templates to inherit from the base template and `{% block %}` tags to fill in or override sections.
+
+#### Handling errors
+
+- Sometimes, errors may occur when handling requests or rendering templates. Django provides some built-in error pages for common errors such as 404 (page not found) or 500 (internal server error).
+- We can customize these error pages by creating templates named `404.html` or `500.html` in the `templates` folder of the project (not the app).
+- We can also use the `DEBUG` setting in the `settings.py` file to control whether to show detailed error messages or not. When `DEBUG` is `True`, Django will show a traceback and a debug toolbar for errors. When `DEBUG` is `False`, Django will show the custom error pages if they exist, or the default ones otherwise.
+
+
+
+
