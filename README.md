@@ -1,5 +1,5 @@
 # Django Essential Training (LinkedIn course)
-# [*Course Certificate*]()
+# [*Course Certificate*](https://www.linkedin.com/learning/certificates/487c16429ab871792d39017fd5d948071ea8e40b89efb37e2456c47875fd5c5e)
 
 In this course, you will learn how to create web applications using Django, a popular Python web framework. You will learn the basics of Django, such as how to use the Model-View-Template (MVT) design pattern, how to handle requests and responses, how to work with templates and databases, and how to create multiple apps within a project.
 
@@ -109,6 +109,30 @@ Django allows us to build dynamic webpages using views and templates.
 - We can customize these error pages by creating templates named `404.html` or `500.html` in the `templates` folder of the project (not the app).
 - We can also use the `DEBUG` setting in the `settings.py` file to control whether to show detailed error messages or not. When `DEBUG` is `True`, Django will show a traceback and a debug toolbar for errors. When `DEBUG` is `False`, Django will show the custom error pages if they exist, or the default ones otherwise.
 
+### Building Frontend with Django
 
+1. **static folder:** Create a `static` folder to store static files like CSS, JavaScript, and images.
+2. **CRUD operations:** Implement CRUD (Create, Retrieve, Update, Delete) operations for your models.
+3. **Create a form:** Build a form to handle user input and validate data.
+4. **Cross-Site Request Forgery (CSRF):** Use CSRF protection to prevent third-party attacks by sending and validating tokens.
+5. **Update endpoint:** Set up update endpoints to modify existing data.
+6. **Deleting data:** Implement deletion functionality to allow users to delete data.
 
+#### Store and Display User-Specific Data
 
+1. **Foreign keys:** Use Foreign Keys to establish relationships between models. For example, in `notes/models.py`, you can import `User` and add a field `user` as a ForeignKey to relate notes to a specific user.
+2. **Migrations:** When modifying a model, create a migration using `python manage.py makemigrations` and apply the changes to the database with `python manage.py migrate`.
+3. **Testing migrations:** To test if the migration works, open the Django shell using `python manage.py shell`, import the `User` model, and retrieve a user instance by calling `User.objects.get(pk=1)` or any other existing user ID. You can count the number of notes for a specific user using `user.notes.count()` or get all the notes for that user using `user.notes.all()`.
+4. **Authentication:** Implement authentication to ensure user privacy and security.
+5. **Class-based views:** Consider using class-based views, as they are powerful and customizable for handling different scenarios. For a comprehensive list of Django's class-based views, refer to [ccbv.co.uk/projects/Django/3.1/django.views.generic.list/ListView/](ccbv.co.uk/projects/Django/3.1/django.views.generic.list/ListView/).
+6. **Form handling:** When handling user-submitted data, it passes through a form that validates it using methods like `clean_title` and `clean_text`. If any errors are encountered, the form raises an error, and if everything is valid, the data is stored in the `cleaned_data` variable and then saved to the database using `save()`.
+7. **Database constraints:** Ensure that the database prevents saving a note without a corresponding user.
+
+### Login, Logout Made Simple
+
+1. **Authentication interfaces:** Create authentication interfaces to allow users to log in and log out.
+2. **Custom settings:** Django provides pre-configured settings for actions after login, and you can customize them in the settings.
+3. **Login and logout endpoints:** Implement endpoints for login and logout, and then proceed to create a signup page.
+4. **Signup restrictions:** To ensure only non-logged-in users can access the signup page, override the `get` method and redirect the user if they are already logged in.
+
+> Remember to read the Django documentation thoroughly and consider exploring other courses to deepen your understanding and skills in Django development. The Django documentation provides comprehensive and up-to-date information on all aspects of Django development.
