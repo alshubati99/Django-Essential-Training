@@ -11,9 +11,6 @@ from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
-
-
-
 # Create your views here.
 class NotesListView(LoginRequiredMixin, ListView):
    model = Notes
